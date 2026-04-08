@@ -2,15 +2,18 @@ import torch
 import json
 from PIL import Image
 import torchvision.transforms as transforms
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # 📍 Paths (already matching your folder)
-MODEL_PATH = "models/new_model/model.pt"
-LABELS_PATH = "models/FR_model/Exported_files/labels.json"
+
+MODEL_PATH = os.path.join(BASE_DIR, "models", "new_model", "model.pt")
+LABELS_PATH = os.path.join(BASE_DIR, "models", "FR_model", "Exported_files", "labels.json")
+
+model = torch.jit.load(MODEL_PATH, map_location="cpu")
+model.eval()
 
 # ✅ Load model (TorchScript safe load)
-import os
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 MODEL_PATH = os.path.join(BASE_DIR, "models", "new_model", "model.pt")
 
