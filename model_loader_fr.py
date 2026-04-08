@@ -6,7 +6,7 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# ✅ Correct paths
+# ✅ Correct path
 MODEL_PATH = os.path.join(BASE_DIR, "models", "new_model", "model.pt")
 LABELS_PATH = os.path.join(BASE_DIR, "models", "FR_model", "Exported_files", "labels.json")
 
