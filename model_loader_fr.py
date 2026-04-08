@@ -8,6 +8,12 @@ MODEL_PATH = "models/new_model/model.pt"
 LABELS_PATH = "models/FR_model/Exported_files/labels.json"
 
 # ✅ Load model (TorchScript safe load)
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+MODEL_PATH = os.path.join(BASE_DIR, "models", "new_model", "model.pt")
+
 model = torch.jit.load(MODEL_PATH, map_location="cpu")
 model.eval()
 
