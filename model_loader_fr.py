@@ -3,28 +3,22 @@ import json
 from PIL import Image
 import torchvision.transforms as transforms
 import os
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# 📍 Paths (already matching your folder)
-
+# ✅ Correct paths
 MODEL_PATH = os.path.join(BASE_DIR, "models", "new_model", "model.pt")
 LABELS_PATH = os.path.join(BASE_DIR, "models", "FR_model", "Exported_files", "labels.json")
 
+# ✅ Load model ONCE
 model = torch.jit.load(MODEL_PATH, map_location="cpu")
 model.eval()
 
-# ✅ Load model (TorchScript safe load)
-
-MODEL_PATH = os.path.join(BASE_DIR, "models", "new_model", "model.pt")
-
-model = torch.jit.load(MODEL_PATH, map_location="cpu")
-model.eval()
-
-# ✅ Load class labels
+# ✅ Load labels
 with open(LABELS_PATH, "r") as f:
     CLASS_NAMES = json.load(f)
 
-# ✅ Basic image transform (standard)
+# ✅ Transform
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
